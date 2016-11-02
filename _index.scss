@@ -1,0 +1,43 @@
+//                           _   _
+//                          | | | |
+//  ___  __ _ ___ ___ ______| |_| |__  _ __ _____      __
+// / __|/ _` / __/ __|______| __| '_ \| '__/ _ \ \ /\ / /
+// \__ \ (_| \__ \__ \      | |_| | | | | | (_) \ V  V /
+// |___/\__,_|___/___/       \__|_| |_|_|  \___/ \_/\_/
+
+$throws: ();
+
+$catch-throws: false;
+
+@function throw($type, $message) {
+  @if $catch-throws {
+    $msgs: map-get($throws, $type) or ();
+    $throws: map-merge($throws, ($type: append($msgs, $message))) !global;
+  } @else if $type == 'warn' {
+    @warn '#{$message}';
+  } @else if $type == 'error' {
+    @error '#{$message}';
+  } @else if $type == 'debug' {
+    @debug '#{$message}';
+  }
+  @return null;
+}
+
+@function warn($message) { @return throw('warn', $message); }
+@function error($message) { @return throw('error', $message); }
+@function debug($message) { @return throw('debug', $message); }
+
+@mixin warn($message) { @at-root .throw { warn: throw('warn', $message); } }
+@mixin error($message) { @at-root .throw { error: throw('error', $message); } }
+@mixin debug($message) { @at-root .throw { debug: throw('debug', $message); } }
+
+@function nth-last-throw($type, $n: 1) {
+  $msgs: map-get($throws, $type);
+  @return nth($msgs, length($msgs) + 1 - $n);
+}
+
+@function last-throw($type) { @return nth-last-throw($type, 1); }
+
+@function last-warn() { @return last-throw('warn'); }
+@function last-error() { @return last-throw('error'); }
+@function last-debug() { @return last-throw('debug'); }
