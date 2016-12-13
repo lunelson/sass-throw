@@ -7,24 +7,32 @@
 
 $throws: ();
 
-$catch-throws: false;
+$throw-debug: false;
 
 @function throw($type, $message) {
-  @if $catch-throws {
+  @if $throw-debug {
     $msgs: map-get($throws, $type) or ();
     $throws: map-merge($throws, ($type: append($msgs, $message))) !global;
   } @else if $type == 'warn' {
     @warn '#{$message}';
   } @else if $type == 'error' {
-    @error '#{$message}';
+    // @error '#{$message}';
+    @warn '#{$message}'; // FIXME this should be an error, but node-sass or libsass currently does not pick up backtrace
   } @else if $type == 'debug' {
     @debug '#{$message}';
   }
   @return null;
 }
 
-@function warn($message) { @return throw('warn', $message); }
+@function error($message) {
+  @if $throw-debug { $throws: map-merge($throws, ('error': append(map-get($throws, 'error') or (), $message))) !global; }
+  // FIXME this should be an error, but node-sass or libsass currently does not pick up backtrace
+  @else { @warn '#{$message}'; }
+  @return null;
+}
+
 @function error($message) { @return throw('error', $message); }
+@function warn($message) { @return throw('warn', $message); }
 @function debug($message) { @return throw('debug', $message); }
 
 @mixin warn($message) { @at-root .throw { warn: throw('warn', $message); } }

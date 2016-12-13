@@ -8,30 +8,30 @@
 $throws: ();
 $catch-throws: false !default;
 
-@function throw($type, $message) {
+@function catch($type, $msg) {
   $msgs: map-get($throws, $type) or ();
-  $throws: map-merge($throws, ($type: append($msgs, $message))) !global;
+  $throws: map-merge($throws, ($type: append($msgs, $msg))) !global;
   @return null;
 }
 
-@function error($message) {
-  @if $catch-throws { @return throw('error', $message); }
-  @else { @error '#{$message}'; }
+@function error($msg) {
+  @if $catch-throws { @return catch('error', $msg); }
+  @else { @error '#{$msg}'; }
 }
 
-@function warn($message) {
-  @if $catch-throws { @return throw('warn', $message); }
-  @else { @warn '#{$message}'; }
+@function warn($msg) {
+  @if $catch-throws { @return catch('warn', $msg); }
+  @else { @warn '#{$msg}'; }
 }
 
-@function debug($message) {
-  @if $catch-throws { @return throw('debug', $message); }
-  @else { @debug '#{$message}'; }
+@function debug($msg) {
+  @if $catch-throws { @return catch('debug', $msg); }
+  @else { @debug '#{$msg}'; }
 }
 
-@mixin debug($message) { @at-root .throw { debug: debug($message); } }
-@mixin warn($message) { @at-root .throw { warn: warn($message); } }
-@mixin error($message) { @at-root .throw { error: error($message); } }
+@mixin debug($msg) { @at-root .throw { debug: debug($msg); } }
+@mixin warn($msg) { @at-root .throw { warn: warn($msg); } }
+@mixin error($msg) { @at-root .throw { error: error($msg); } }
 
 @function last-throw($type) {
   $msgs: map-get($throws, $type);
