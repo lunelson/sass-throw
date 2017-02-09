@@ -1,5 +1,8 @@
+@import '../index';
 
+$_catch: true;
 
 .test {
-  content: 'hello' + 'world';
+  @include error('this thing threw an error');
+  err: last-error();
 }

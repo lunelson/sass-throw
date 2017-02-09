@@ -5,47 +5,40 @@
 // \__ \ (_| \__ \__ \      | |_| | | | | | (_) \ V  V /
 // |___/\__,_|___/___/       \__|_| |_|_|  \___/ \_/\_/
 
-$throws: ();
+$st-errors: ();
+$st-debugs: ();
+$st-warns: ();
 
-$throw-debug: false;
+$st-catch: false !default;
 
-@function throw($type, $message) {
-  @if $throw-debug {
-    $msgs: map-get($throws, $type) or ();
-    $throws: map-merge($throws, ($type: append($msgs, $message))) !global;
-  } @else if $type == 'warn' {
-    @warn '#{$message}';
-  } @else if $type == 'error' {
-    // @error '#{$message}';
-    @warn '#{$message}'; // FIXME this should be an error, but node-sass or libsass currently does not pick up backtrace
-  } @else if $type == 'debug' {
-    @debug '#{$message}';
-  }
-  @return null;
+@function _nth($list, $n) {
+  @if length($list) == 0 or $n < 1 or $n > length($list) { @return null; }
+  @return nth($list, $n);
 }
 
-@function error($message) {
-  @if $throw-debug { $throws: map-merge($throws, ('error': append(map-get($throws, 'error') or (), $message))) !global; }
-  // FIXME this should be an error, but node-sass or libsass currently does not pick up backtrace
-  @else { @warn '#{$message}'; }
-  @return null;
+@function error($msg) {
+  @if $st-catch { $st-errors: append($st-errors, $msg) !global; @return null; }
+  @else { @error '#{$msg}'; }
 }
 
-@function error($message) { @return throw('error', $message); }
-@function warn($message) { @return throw('warn', $message); }
-@function debug($message) { @return throw('debug', $message); }
-
-@mixin warn($message) { @at-root .throw { warn: throw('warn', $message); } }
-@mixin error($message) { @at-root .throw { error: throw('error', $message); } }
-@mixin debug($message) { @at-root .throw { debug: throw('debug', $message); } }
-
-@function nth-last-throw($type, $n: 1) {
-  $msgs: map-get($throws, $type);
-  @return nth($msgs, length($msgs) + 1 - $n);
+@function debug($msg) {
+  @if $st-catch { $st-debugs: append($st-debugs, $msg) !global; @return null; }
+  @else { @debug '#{$msg}'; }
 }
 
-@function last-throw($type) { @return nth-last-throw($type, 1); }
+@function warn($msg) {
+  @if $st-catch { $st-warns: append($st-warns, $msg) !global; @return null; }
+  @else { @warn '#{$msg}'; }
+}
 
-@function last-warn() { @return last-throw('warn'); }
-@function last-error() { @return last-throw('error'); }
-@function last-debug() { @return last-throw('debug'); }
+@mixin error($msg) { @at-root .throw { error: error($msg); } }
+@mixin debug($msg) { @at-root .throw { debug: debug($msg); } }
+@mixin warn($msg) { @at-root .throw { warn: warn($msg); } }
+
+@function nth-last-error($n: 1) { @return _nth($st-errors, length($st-errors) + 1 - $n) or 'no error registered'; }
+@function nth-last-debug($n: 1) { @return _nth($st-debugs, length($st-debugs) + 1 - $n) or 'no debug registered'; }
+@function nth-last-warn($n: 1) { @return _nth($st-warns, length($st-warns) + 1 - $n) or 'no warn registered'; }
+
+@function last-error() { @return nth-last-error(); }
+@function last-debug() { @return nth-last-debug(); }
+@function last-warn() { @return nth-last-warn(); }
