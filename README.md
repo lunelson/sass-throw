@@ -1,10 +1,22 @@
-## Sass Throw
+# sass-throw
+
+Make `@error`, `@warn` and `@debug` messages testable in Sass. Sass-Throw provides three `function`s and three `mixin`s, one for each of `error`, `warn` and `debug`, which will function like normal `@error`, `@warn` and `@debug` directives in Sass unless the global variable `$st-catch` is set to `true`, whereupon they will be captured rather than output.
+
+These "caught" directives can be checked with `last-error()` `last-warn()` and `last-debug()` respectively.
+
 
 ```scss
-// e.g.
+// Sass
+$st-catch: true;
 
+.test {
+  value: error('something went wrong');
+  check: last-error();
+}
 ```
-
-**Sass Throw** is a set of functions to render `@error` `@warn` and `@debug` messages testable in Sass, by storing them in a list instead of triggering them (if the global flag `$catch-throws` is set). The messages can then be retrieved and verified by a testing utility such as [True]() or [Bootcamp]().
-
-Inspired by suggestions from user @Undistraction posted in issue threads [at True](https://github.com/oddbird/true/issues/31) and [at Bootcamp](https://github.com/thejameskyle/bootcamp/issues/101).
+```css
+/* CSS */
+.test {
+  check: "something went wrong";
+}
+```
