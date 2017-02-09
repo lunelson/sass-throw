@@ -2,11 +2,15 @@
 
 Make `@error`, `@warn` and `@debug` messages testable in Sass.
 
-This lib provides a `function` and a `mixin` for each of `error()`, `warn()` and `debug()` to be used instead of the built-in `@error`, `@warn` and `@debug` directives in Sass. These work transparently unless the global variable `$st-catch` is set to `true`, whereupon messages will be captured rather than output. These messages can be inspected with `last-error()` `last-warn()` and `last-debug()` respectively.
+Use `error()`, `warn()` and `debug()` functions (or mixins) instead of the built-in `@error`, `@warn` and `@debug` directives. When the global variable `$st-catch` is set to `true`, messages will be captured rather than output, and can be inspected with `last-error()` `last-warn()` and `last-debug()` respectively.
 
-
+```sh
+# install
+npm install --save lunelson/sass-throw
+```
 ```scss
-// Sass
+// test.scss
+@import 'sass-throw/index';
 $st-catch: true;
 .test {
   // error as function
@@ -18,9 +22,11 @@ $st-catch: true;
 }
 ```
 ```css
-/* CSS */
+/* test.css */
 .test {
   error: "something went wrong";
   debug: "this is a debug message";
 }
 ```
+
+Questions? [Twitter.](https://twitter.com/lunelson)

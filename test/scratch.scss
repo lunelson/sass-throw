@@ -1,8 +1,11 @@
 @import '../index';
 
-$_catch: true;
-
+$st-catch: true;
 .test {
-  @include error('this thing threw an error');
-  err: last-error();
+  // error as function
+  value: error('something went wrong');
+  error: last-error();
+  // debug as mixin
+  @include debug('this is a debug message');
+  debug: last-debug();
 }

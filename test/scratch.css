@@ -1,3 +1,4 @@
 .test {
-  err: "this thing threw an error";
+  error: "something went wrong";
+  debug: "this is a debug message";
 }
