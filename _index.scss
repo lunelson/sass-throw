@@ -18,7 +18,7 @@ $st-catch: false !default;
 
 @function error($msg) {
   @if $st-catch { $st-errors: append($st-errors, $msg) !global; @return null; }
-  @else { @error '#{$msg}'; }
+  @else { @warn '#{$msg}'; }
 }
 
 @function debug($msg) {
