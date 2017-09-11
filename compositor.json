@@ -1,0 +1,143 @@
+{
+  "name": "lunelson/sass-throw",
+  "version": "0.1.4",
+  "libraries": {
+    "xv": "^1.1.25"
+  },
+  "title": "Sass Throw",
+  "branch": "master",
+  "style": {
+    "name": "Default",
+    "componentSet": {
+      "nav": "nav/BasicNav",
+      "header": "header/BannerHeader",
+      "article": "article/BasicArticle",
+      "footer": "footer/BasicFooter"
+    },
+    "fontFamily": "-apple-system, BlinkMacSystemFont, sans-serif",
+    "fontWeight": 400,
+    "bold": 600,
+    "lineHeight": 1.5,
+    "typeScale": [
+      72,
+      48,
+      24,
+      20,
+      16,
+      14,
+      12
+    ],
+    "monospace": "Menlo, monospace",
+    "heading": {
+      "fontFamily": null,
+      "fontStyle": null,
+      "fontWeight": 600,
+      "lineHeight": 1.25,
+      "textTransform": null,
+      "letterSpacing": null
+    },
+    "h0": {},
+    "h1": {},
+    "h2": {},
+    "h3": {},
+    "h4": {},
+    "h5": {},
+    "h6": {},
+    "alternativeText": {},
+    "space": [
+      0,
+      8,
+      16,
+      32,
+      48,
+      64,
+      96
+    ],
+    "layout": {
+      "maxWidth": 1024,
+      "centered": false
+    },
+    "colors": {
+      "text": "#111",
+      "background": "#fff",
+      "primary": "#08e",
+      "secondary": "#059",
+      "highlight": "#e08",
+      "border": "#ddd",
+      "muted": "#eee"
+    },
+    "border": {
+      "width": 1,
+      "radius": 2
+    },
+    "link": {},
+    "button": {
+      "hover": {
+        "boxShadow": "inset 0 0 0 999px rgba(0, 0, 0, .125)"
+      }
+    },
+    "input": {},
+    "body": {
+      "margin": 0
+    },
+    "breakpoints": {
+      "xs": "@media screen and (max-width:40em)",
+      "sm": "@media screen and (min-width:40em)",
+      "md": "@media screen and (min-width:52em)",
+      "lg": "@media screen and (min-width:64em)"
+    }
+  },
+  "content": [
+    {
+      "component": "nav",
+      "links": [
+        {
+          "href": "https://github.com/lunelson/sass-throw",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://npmjs.com/package/sass-throw",
+          "text": "npm"
+        }
+      ]
+    },
+    {
+      "component": "header",
+      "heading": "sass-throw",
+      "subhead": "Testable error/warn/debug functions/mixins for Sass",
+      "children": [
+        {
+          "component": "ui/TweetButton",
+          "text": "sass-throw: Testable error/warn/debug functions/mixins for Sass",
+          "url": null
+        },
+        {
+          "component": "ui/GithubButton",
+          "user": "lunelson",
+          "repo": "sass-throw"
+        }
+      ],
+      "text": "v0.9.0"
+    },
+    {
+      "component": "article",
+      "metadata": {
+        "source": "github.readme"
+      },
+      "html": "\n<p>Make <code>@error</code>, <code>@warn</code> and <code>@debug</code> messages testable in Sass.</p>\n<p>Use <code>error()</code>, <code>warn()</code> and <code>debug()</code> functions (or mixins) instead of the built-in <code>@error</code>, <code>@warn</code> and <code>@debug</code> directives. When the global variable <code>$st-catch</code> is set to <code>true</code>, messages will be captured rather than output, and can be inspected with <code>last-error()</code> <code>last-warn()</code> and <code>last-debug()</code> respectively.</p>\n<pre><span class=\"hljs-comment\"># install</span>\nnpm install --save lunelson/sass-throw</pre><pre><span class=\"hljs-comment\">// test.scss</span>\n@<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">&apos;sass-throw/index&apos;</span>;\n<span class=\"hljs-variable\">$st-catch</span>: true;\n<span class=\"hljs-selector-class\">.test</span> {\n  <span class=\"hljs-comment\">// error as function</span>\n  value: error(<span class=\"hljs-string\">&apos;something went wrong&apos;</span>);\n  error: last-error();\n  <span class=\"hljs-comment\">// debug as mixin</span>\n  @<span class=\"hljs-keyword\">include</span> debug(<span class=\"hljs-string\">&apos;this is a debug message&apos;</span>);\n  debug: last-debug();\n}</pre><pre><span class=\"hljs-comment\">/* test.css */</span>\n<span class=\"hljs-selector-class\">.test</span> {\n  <span class=\"hljs-attribute\">error</span>: <span class=\"hljs-string\">&quot;something went wrong&quot;</span>;\n  <span class=\"hljs-attribute\">debug</span>: <span class=\"hljs-string\">&quot;this is a debug message&quot;</span>;\n}</pre><p>Questions? <a href=\"https://twitter.com/lunelson\">Twitter.</a></p>\n"
+    },
+    {
+      "component": "footer",
+      "links": [
+        {
+          "href": "https://github.com/lunelson/sass-throw",
+          "text": "GitHub"
+        },
+        {
+          "href": "https://github.com/lunelson",
+          "text": "lunelson"
+        }
+      ]
+    }
+  ]
+}
