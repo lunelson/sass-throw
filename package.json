@@ -1,6 +1,6 @@
 {
   "name": "@lunelson/sass-throw",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "description": "Testable error/warn/debug functions/mixins for Sass",
   "main": "_index.scss",
   "scripts": {
