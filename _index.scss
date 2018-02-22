@@ -35,9 +35,9 @@ $st-catch: false !default;
 @mixin debug($msg) { @at-root .throw { debug: debug($msg); } }
 @mixin warn($msg) { @at-root .throw { warn: warn($msg); } }
 
-@function nth-last-error($n: 1) { @return _nth($st-errors, length($st-errors) + 1 - $n) or 'no errors registered'; }
-@function nth-last-debug($n: 1) { @return _nth($st-debugs, length($st-debugs) + 1 - $n) or 'no debugs registered'; }
-@function nth-last-warn($n: 1) { @return _nth($st-warns, length($st-warns) + 1 - $n) or 'no warns registered'; }
+@function nth-last-error($n: 1) { @return _nth($st-errors, length($st-errors) + 1 - $n) or 'no error calls registered'; }
+@function nth-last-debug($n: 1) { @return _nth($st-debugs, length($st-debugs) + 1 - $n) or 'no debug calls registered'; }
+@function nth-last-warn($n: 1) { @return _nth($st-warns, length($st-warns) + 1 - $n) or 'no warn calls registered'; }
 
 @function last-error() { @return nth-last-error(); }
 @function last-debug() { @return nth-last-debug(); }

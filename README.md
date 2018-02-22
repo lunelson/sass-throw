@@ -29,4 +29,4 @@ $st-catch: true;
 }
 ```
 
-Questions? [Twitter.](https://twitter.com/lunelson)
+Questions? File an issue, or [tweet at me](https://twitter.com/lunelson).

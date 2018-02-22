@@ -1,5 +1,5 @@
 {
-  "name": "sass-throw",
+  "name": "@lunelson/sass-throw",
   "version": "0.9.0",
   "description": "Testable error/warn/debug functions/mixins for Sass",
   "main": "_index.scss",
@@ -16,13 +16,6 @@
   ],
   "author": "Lu Nelson",
   "license": "MIT",
-  "dependencies": {
-    "sass-calc": "github:lunelson/sass-calc",
-    "sass-maps-plus": "github:lunelson/sass-maps-plus",
-    "sass-throw": "github:lunelson/sass-throw",
-    "sass-to-js": "github:lunelson/sass-to-js",
-    "sass-u": "github:lunelson/sass-u"
-  },
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-diff": "^1.0.0",
