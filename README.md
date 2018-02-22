@@ -6,7 +6,7 @@ Use `error()`, `warn()` and `debug()` functions (or mixins) instead of the built
 
 ```sh
 # install
-npm install --save lunelson/sass-throw
+npm install --save @lunelson/sass-throw
 ```
 ```scss
 // test.scss
