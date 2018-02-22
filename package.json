@@ -3,12 +3,23 @@
   "version": "1.0.0",
   "description": "Testable error/warn/debug functions/mixins for Sass",
   "main": "_index.scss",
+  "directories": {
+    "test": "test"
+  },
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
     "test": "gulp test"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lunelson/sass-throw.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lunelson/sass-throw/issues"
+  },
+  "homepage": "https://github.com/lunelson/sass-throw#readme",
   "keywords": [
     "libsass",
     "sass",

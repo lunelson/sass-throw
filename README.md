@@ -1,5 +1,7 @@
 # sass-throw
 
+[![Build Status](https://travis-ci.org/lunelson/sass-throw.svg?branch=master)](https://travis-ci.org/lunelson/sass-throw)
+
 Make `@error`, `@warn` and `@debug` messages testable in Sass.
 
 Use `error()`, `warn()` and `debug()` functions (or mixins) instead of the built-in `@error`, `@warn` and `@debug` directives. When the global variable `$st-catch` is set to `true`, messages will be captured rather than output, and can be inspected with `last-error()` `last-warn()` and `last-debug()` respectively.
