@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Testable error/warn/debug functions/mixins for Sass",
   "main": "_index.scss",
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "test": "gulp test"
   },
