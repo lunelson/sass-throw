@@ -1,6 +1,6 @@
 {
   "name": "@lunelson/sass-throw",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Testable Sass error/warn/debug functions/mixins",
   "keywords": [
     "debug",
