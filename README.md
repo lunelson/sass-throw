@@ -12,7 +12,7 @@ npm install --save @lunelson/sass-throw
 ```
 ```scss
 // in your sass file, assuming you have 'node_modules' in Sass' search path
-@import 'sass-throw/index';
+@import '@lunelson/sass-throw/index';
 ```
 ```scss
 // test.scss
