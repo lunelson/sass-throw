@@ -1,39 +1,39 @@
 {
   "name": "@lunelson/sass-throw",
   "version": "1.0.0",
-  "description": "Testable error/warn/debug functions/mixins for Sass",
+  "description": "Testable Sass error/warn/debug functions/mixins",
+  "keywords": [
+    "debug",
+    "error",
+    "libsass",
+    "sass",
+    "test",
+    "warn"
+  ],
+  "homepage": "https://github.com/lunelson/sass-throw#readme",
+  "bugs": {
+    "url": "https://github.com/lunelson/sass-throw/issues"
+  },
+  "license": "MIT",
+  "author": "Lu Nelson",
   "main": "_index.scss",
   "directories": {
     "test": "test"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "scripts": {
-    "test": "gulp test"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lunelson/sass-throw.git"
   },
-  "bugs": {
-    "url": "https://github.com/lunelson/sass-throw/issues"
+  "scripts": {
+    "test": "gulp test"
   },
-  "homepage": "https://github.com/lunelson/sass-throw#readme",
-  "keywords": [
-    "libsass",
-    "sass",
-    "test",
-    "error",
-    "warn",
-    "debug"
-  ],
-  "author": "Lu Nelson",
-  "license": "MIT",
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-diff": "^1.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^3.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
