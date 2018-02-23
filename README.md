@@ -1,5 +1,6 @@
 # sass-throw
 
+[![npm published v](https://img.shields.io/npm/v/@lunelson/sass-throw.svg)]()
 [![Build Status](https://travis-ci.org/lunelson/sass-throw.svg?branch=master)](https://travis-ci.org/lunelson/sass-throw)
 
 Make `@error`, `@warn` and `@debug` messages testable in Sass.
