@@ -17,18 +17,21 @@ $st-catch: false !default;
 }
 
 @function error($msg) {
-  @if $st-catch { $st-errors: append($st-errors, $msg) !global; @return null; }
+  @if $st-catch { $st-errors: append($st-errors, $msg) !global; }
   @else { @warn '#{$msg}'; }
+  @return null;
 }
 
 @function debug($msg) {
-  @if $st-catch { $st-debugs: append($st-debugs, $msg) !global; @return null; }
+  @if $st-catch { $st-debugs: append($st-debugs, $msg) !global; }
   @else { @debug '#{$msg}'; }
+  @return null;
 }
 
 @function warn($msg) {
-  @if $st-catch { $st-warns: append($st-warns, $msg) !global; @return null; }
+  @if $st-catch { $st-warns: append($st-warns, $msg) !global; }
   @else { @warn '#{$msg}'; }
+  @return null;
 }
 
 @mixin error($msg) { @at-root .throw { error: error($msg); } }
