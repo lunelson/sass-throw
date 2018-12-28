@@ -1,13 +1,16 @@
 {
   "name": "@lunelson/sass-throw",
   "version": "1.0.2",
-  "description": "Testable Sass error/warn/debug functions/mixins",
+  "description": "Testable Sass error/warn/debug directives via proxy functions and mixins",
   "keywords": [
     "debug",
     "error",
     "libsass",
+    "dart-sass",
+    "node-sass",
     "sass",
     "test",
+    "testing",
     "warn"
   ],
   "homepage": "https://github.com/lunelson/sass-throw#readme",
@@ -18,23 +21,32 @@
   "author": "Lu Nelson",
   "main": "_index.scss",
   "directories": {
-    "test": "test"
+    "test": "tests"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/lunelson/sass-throw.git"
   },
   "scripts": {
-    "start": "gulp",
-    "test": "gulp test"
+    "test": "ava",
+    "start": "ava --watch"
   },
   "devDependencies": {
-    "gulp": "^3.9.1",
-    "gulp-diff": "^1.0.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^3.1.0"
+    "ava": "^1.0.1",
+    "micromatch": "^3.1.10",
+    "node-sass": "^4.11.0",
+    "sass": "^1.15.2",
+    "write": "^1.0.3"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "ava": {
+    "files": [
+      "tests/*{.js,.scss}"
+    ],
+    "sources": [
+      "_index.scss"
+    ]
   }
 }

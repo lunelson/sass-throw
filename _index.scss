@@ -5,43 +5,25 @@
 // \__ \ (_| \__ \__ \      | |_| | | | | | (_) \ V  V /
 // |___/\__,_|___/___/       \__|_| |_|_|  \___/ \_/\_/
 
-$st-errors: ();
-$st-debugs: ();
-$st-warns: ();
-
-$st-catch: false !default;
-
-@function _nth($list, $n) {
-  @if length($list) == 0 or $n < 1 or $n > length($list) { @return null; }
-  @return nth($list, $n);
-}
+$sass-throw-catch: false !default;
 
 @function error($msg) {
-  @if $st-catch { $st-errors: append($st-errors, $msg) !global; }
-  @else { @warn '#{$msg}'; }
-  @return null;
+  @if not $sass-throw-catch { @error '#{$msg}'; }
+  @return $msg;
 }
 
 @function debug($msg) {
-  @if $st-catch { $st-debugs: append($st-debugs, $msg) !global; }
-  @else { @debug '#{$msg}'; }
-  @return null;
+  @if not $sass-throw-catch { @debug '#{$msg}'; }
+  @return $msg;
 }
 
 @function warn($msg) {
-  @if $st-catch { $st-warns: append($st-warns, $msg) !global; }
-  @else { @warn '#{$msg}'; }
-  @return null;
+  @if not $sass-throw-catch { @warn '#{$msg}'; }
+  @return $msg;
 }
 
-@mixin error($msg) { @at-root .throw { error: error($msg); } }
-@mixin debug($msg) { @at-root .throw { debug: debug($msg); } }
-@mixin warn($msg) { @at-root .throw { warn: warn($msg); } }
+@mixin error($msg) { @at-root .sass-throw .error { message: error($msg); } }
 
-@function nth-last-error($n: 1) { @return _nth($st-errors, length($st-errors) + 1 - $n) or 'no error calls registered'; }
-@function nth-last-debug($n: 1) { @return _nth($st-debugs, length($st-debugs) + 1 - $n) or 'no debug calls registered'; }
-@function nth-last-warn($n: 1) { @return _nth($st-warns, length($st-warns) + 1 - $n) or 'no warn calls registered'; }
+@mixin debug($msg) { @at-root .sass-throw .debug { message: debug($msg); } }
 
-@function last-error() { @return nth-last-error(); }
-@function last-debug() { @return nth-last-debug(); }
-@function last-warn() { @return nth-last-warn(); }
+@mixin warn($msg) { @at-root .sass-throw .warn { message: warn($msg); } }

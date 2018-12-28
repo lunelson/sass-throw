@@ -3,9 +3,9 @@
 [![npm published v](https://img.shields.io/npm/v/@lunelson/sass-throw.svg)]()
 [![Build Status](https://travis-ci.org/lunelson/sass-throw.svg?branch=master)](https://travis-ci.org/lunelson/sass-throw)
 
-Make `@error`, `@warn` and `@debug` messages testable in Sass.
+Make `@error`, `@warn` and `@debug` directives testable in Sass.
 
-Use `error()`, `warn()` and `debug()` functions (or mixins) instead of the built-in `@error`, `@warn` and `@debug` directives. When the global variable `$st-catch` is set to `true`, messages will be captured rather than output, and can be inspected with `last-error()` `last-warn()` and `last-debug()` respectively.
+Use `error()`, `warn()` and `debug()` functions (or mixins) instead of the built-in `@error`, `@warn` and `@debug` directives, and when the global variable `$sass-throw-catch` is set to `true`, their messages will be output in CSS rather than passed to Sass directives.
 
 ```sh
 # in your project
@@ -16,22 +16,37 @@ npm install --save @lunelson/sass-throw
 @import '@lunelson/sass-throw/index';
 ```
 ```scss
-// test.scss
-$st-catch: true;
+/* input: test.scss */
+$sass-throw-catch: true;
+
 .test {
-  // error as function
-  value: error('something went wrong');
-  error: last-error();
-  // debug as mixin
-  @include debug('this is a debug message');
-  debug: last-debug();
+  error: error('this is an error message via function');
+  warn: warn('this is a warn message via function');
+  debug: debug('this is a debug message via function');
 }
+
+@include error('this is an error message via mixin');
+@include warn('this is a warn message via mixin');
+@include debug('this is a debug message via mixin');
 ```
 ```css
-/* test.css */
+/* output: test.css */
 .test {
-  error: "something went wrong";
-  debug: "this is a debug message";
+  error: "this is an error message via function";
+  warn: "this is a warn message via function";
+  debug: "this is a debug message via function";
+}
+
+.sass-throw .error {
+  message: "this is an error message via mixin";
+}
+
+.sass-throw .warn {
+  message: "this is a warn message via mixin";
+}
+
+.sass-throw .debug {
+  message: "this is a debug message via mixin";
 }
 ```
 
