@@ -7,26 +7,32 @@
 
 $sass-throw-catch: false !default;
 
-@function error($msg) {
-  @if $sass-throw-catch { @return $msg; }
-  @error '#{$msg}';
-  @return null;
+@function error($msg, $val: null) {
+  @if $sass-throw-catch {
+    @return 'ERROR: #{$msg}';
+  }
+  @error $msg;
+  @return $val;
 }
 
-@function debug($msg) {
-  @if $sass-throw-catch { @return $msg; }
-  @debug '#{$msg}';
-  @return null;
+@function warn($msg, $val: null) {
+  @if $sass-throw-catch {
+    @return 'WARNING: #{$msg}';
+  }
+  @warn $msg;
+  @return $val;
 }
 
-@function warn($msg) {
-  @if $sass-throw-catch { @return $msg; }
-  @warn '#{$msg}';
-  @return null;
+@function debug($msg, $val: null) {
+  @if $sass-throw-catch {
+    @return 'DEBUG: #{$msg}';
+  }
+  @debug $msg;
+  @return $val;
 }
 
 @mixin error($msg) { @at-root .sass-throw .error { message: error($msg); } }
 
-@mixin debug($msg) { @at-root .sass-throw .debug { message: debug($msg); } }
+@mixin warn($msg) { @at-root .sass-throw .warning { message: warn($msg); } }
 
-@mixin warn($msg) { @at-root .sass-throw .warn { message: warn($msg); } }
+@mixin debug($msg) { @at-root .sass-throw .debug { message: debug($msg); } }
