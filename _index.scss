@@ -8,18 +8,21 @@
 $sass-throw-catch: false !default;
 
 @function error($msg) {
-  @if not $sass-throw-catch { @error '#{$msg}'; }
-  @return $msg;
+  @if $sass-throw-catch { @return $msg; }
+  @error '#{$msg}';
+  @return null;
 }
 
 @function debug($msg) {
-  @if not $sass-throw-catch { @debug '#{$msg}'; }
-  @return $msg;
+  @if $sass-throw-catch { @return $msg; }
+  @debug '#{$msg}';
+  @return null;
 }
 
 @function warn($msg) {
-  @if not $sass-throw-catch { @warn '#{$msg}'; }
-  @return $msg;
+  @if $sass-throw-catch { @return $msg; }
+  @warn '#{$msg}';
+  @return null;
 }
 
 @mixin error($msg) { @at-root .sass-throw .error { message: error($msg); } }
