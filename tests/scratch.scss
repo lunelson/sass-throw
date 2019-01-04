@@ -7,14 +7,14 @@
 $throw-catch: true;
 
 .test {
-  error: error('this is an error message from a function');
-  warn: warn('this is a warn message from a function');
-  debug: debug('this is a debug message from a function');
+  error: throw-error('this is an error message from a function');
+  warn: throw-warn('this is a warn message from a function');
+  debug: throw-debug('this is a debug message from a function');
 }
 
-@include error('this is an error message from a mixin');
-@include warn('this is a warn message from a mixin');
-@include debug('this is a debug message from a mixin');
+@include throw-error('this is an error message from a mixin');
+@include throw-warn('this is a warn message from a mixin');
+@include throw-debug('this is a debug message from a mixin');
 
 /////////////////////////////////////////////
 ///////// catch inactive (no errors) ////////
@@ -23,11 +23,11 @@ $throw-catch: true;
 $throw-catch: false;
 
 .test {
-  // error: error('this is an error message from a function');
-  warn: warn('this is a warn message from a function');
-  debug: debug('this is a debug message from a function');
+  // error: throw-error('this is an error message from a function');
+  warn: throw-warn('this is a warn message from a function');
+  debug: throw-debug('this is a debug message from a function');
 }
 
-// @include error('this is an error message from a mixin');
-@include warn('this is a warn message from a mixin');
-@include debug('this is a debug message from a mixin');
+// @include throw-error('this is an error message from a mixin');
+@include throw-warn('this is a warn message from a mixin');
+@include throw-debug('this is a debug message from a mixin');

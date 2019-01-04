@@ -21,46 +21,42 @@
 $throw-stack: ();
 $throw-catch: false !default;
 
-@function nth-last-throw($n: 1) {
+@function last-throw($n: 1) {
   @return --st-nth($throw-stack, length($throw-stack) + 1 - $n) or 'nothing thrown';
 }
 
-@function last-throw() {
-  @return nth-last-throw();
-}
-
-@function error($msg, $val: null) {
+@function throw-error($message, $value: null) {
   @if $throw-catch {
-    $throw: "ERROR: #{$msg}";
+    $throw: "ERROR: #{$message}";
     $throw-stack: append($throw-stack, $throw) !global;
     @return $throw;
   }
-  @error $msg;
-  @return $val;
+  @error $message;
+  @return $value;
 }
 
-@function warn($msg, $val: null) {
+@function throw-warn($message, $value: null) {
   @if $throw-catch {
-    $throw: "WARNING: #{$msg}";
+    $throw: "WARNING: #{$message}";
     $throw-stack: append($throw-stack, $throw) !global;
     @return $throw;
   }
-  @warn $msg;
-  @return $val;
+  @warn $message;
+  @return $value;
 }
 
-@function debug($msg, $val: null) {
+@function throw-debug($message, $value: null) {
   @if $throw-catch {
-    $throw: "DEBUG: #{$msg}";
+    $throw: "DEBUG: #{$message}";
     $throw-stack: append($throw-stack, $throw) !global;
     @return $throw;
   }
-  @debug $msg;
-  @return $val;
+  @debug $message;
+  @return $value;
 }
 
-@mixin error($msg) { @at-root .sass-throw .error { message: error($msg); } }
+@mixin throw-error($message) { @at-root .sass-throw .error { message: throw-error($message); } }
 
-@mixin warn($msg) { @at-root .sass-throw .warning { message: warn($msg); } }
+@mixin throw-warn($message) { @at-root .sass-throw .warning { message: throw-warn($message); } }
 
-@mixin debug($msg) { @at-root .sass-throw .debug { message: debug($msg); } }
+@mixin throw-debug($message) { @at-root .sass-throw .debug { message: throw-debug($message); } }

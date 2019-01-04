@@ -1,7 +1,9 @@
 # sass-throw
 
-[![npm published v](https://img.shields.io/npm/v/@lunelson/sass-throw.svg)]()
-[![Build Status](https://travis-ci.org/lunelson/sass-throw.svg?branch=master)](https://travis-ci.org/lunelson/sass-throw)
+[![](https://img.shields.io/travis/lunelson/sass-throw.svg?style=flat-square)](#travis)
+[![](https://img.shields.io/npm/v/@lunelson/sass-throw.svg?style=flat-square)](#releases)
+[![](https://img.shields.io/github/license/lunelson/sass-throw.svg?style=flat-square)](#license)
+<!-- [![](https://img.shields.io/npm/dt/@lunelson/sass-throw.svg?style=flat-square)](#download) -->
 
 Make `@error`, `@warn` and `@debug` directives testable in Sass.
 
@@ -20,14 +22,14 @@ npm install --save @lunelson/sass-throw
 $throw-catch: true;
 
 .test {
-  error: error('this is an error message via function');
-  warn: warn('this is a warn message via function');
-  debug: debug('this is a debug message via function');
+  error: throw-error('this is an error message via function');
+  warn: throw-warn('this is a warn message via function');
+  debug: throw-debug('this is a debug message via function');
 }
 
-@include error('this is an error message via mixin');
-@include warn('this is a warn message via mixin');
-@include debug('this is a debug message via mixin');
+@include throw-error('this is an error message via mixin');
+@include throw-warn('this is a warn message via mixin');
+@include throw-debug('this is a debug message via mixin');
 ```
 ```css
 /* output: test.css */
