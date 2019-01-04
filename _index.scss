@@ -5,27 +5,55 @@
 // \__ \ (_| \__ \__ \      | |_| | | | | | (_) \ V  V /
 // |___/\__,_|___/___/       \__|_| |_|_|  \___/ \_/\_/
 
-$sass-throw-catch: false !default;
+/////////////////////////////////////////////
+////////////////// private //////////////////
+/////////////////////////////////////////////
+
+@function --st-nth($list, $n) {
+  @if length($list) == 0 or $n < 1 or $n > length($list) { @return null; }
+  @return nth($list, $n);
+}
+
+/////////////////////////////////////////////
+/////////////////// public //////////////////
+/////////////////////////////////////////////
+
+$throw-stack: ();
+$throw-catch: false !default;
+
+@function nth-last-throw($n: 1) {
+  @return --st-nth($throw-stack, length($throw-stack) + 1 - $n) or 'nothing thrown';
+}
+
+@function last-throw() {
+  @return nth-last-throw();
+}
 
 @function error($msg, $val: null) {
-  @if $sass-throw-catch {
-    @return 'ERROR: #{$msg}';
+  @if $throw-catch {
+    $throw: "ERROR: #{$msg}";
+    $throw-stack: append($throw-stack, $throw) !global;
+    @return $throw;
   }
   @error $msg;
   @return $val;
 }
 
 @function warn($msg, $val: null) {
-  @if $sass-throw-catch {
-    @return 'WARNING: #{$msg}';
+  @if $throw-catch {
+    $throw: "WARNING: #{$msg}";
+    $throw-stack: append($throw-stack, $throw) !global;
+    @return $throw;
   }
   @warn $msg;
   @return $val;
 }
 
 @function debug($msg, $val: null) {
-  @if $sass-throw-catch {
-    @return 'DEBUG: #{$msg}';
+  @if $throw-catch {
+    $throw: "DEBUG: #{$msg}";
+    $throw-stack: append($throw-stack, $throw) !global;
+    @return $throw;
   }
   @debug $msg;
   @return $val;

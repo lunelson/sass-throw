@@ -5,7 +5,7 @@
 
 Make `@error`, `@warn` and `@debug` directives testable in Sass.
 
-Use `error()`, `warn()` and `debug()` functions (or mixins) instead of the built-in `@error`, `@warn` and `@debug` directives, and when the global variable `$sass-throw-catch` is set to `true`, their messages will be output in CSS rather than passed to Sass directives.
+Use `error()`, `warn()` and `debug()` functions (or mixins) instead of the built-in `@error`, `@warn` and `@debug` directives, and when the global variable `$throw-catch` is set to `true`, their messages will be output in CSS rather than passed to Sass directives.
 
 ```sh
 # in your project
@@ -17,7 +17,7 @@ npm install --save @lunelson/sass-throw
 ```
 ```scss
 /* input: test.scss */
-$sass-throw-catch: true;
+$throw-catch: true;
 
 .test {
   error: error('this is an error message via function');

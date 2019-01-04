@@ -4,7 +4,7 @@
 //////////////// catch active ///////////////
 /////////////////////////////////////////////
 
-$sass-throw-catch: true;
+$throw-catch: true;
 
 .test {
   error: error('this is an error message from a function');
@@ -20,7 +20,7 @@ $sass-throw-catch: true;
 ///////// catch inactive (no errors) ////////
 /////////////////////////////////////////////
 
-$sass-throw-catch: false;
+$throw-catch: false;
 
 .test {
   // error: error('this is an error message from a function');

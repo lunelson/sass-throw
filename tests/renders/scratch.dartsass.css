@@ -1,17 +1,17 @@
 .test {
-  error: "this is an error message from a function";
-  warn: "this is a warn message from a function";
-  debug: "this is a debug message from a function";
+  error: "ERROR: this is an error message from a function";
+  warn: "WARNING: this is a warn message from a function";
+  debug: "DEBUG: this is a debug message from a function";
 }
 
 .sass-throw .error {
-  message: "this is an error message from a mixin";
+  message: "ERROR: this is an error message from a mixin";
 }
 
-.sass-throw .warn {
-  message: "this is a warn message from a mixin";
+.sass-throw .warning {
+  message: "WARNING: this is a warn message from a mixin";
 }
 
 .sass-throw .debug {
-  message: "this is a debug message from a mixin";
+  message: "DEBUG: this is a debug message from a mixin";
 }
