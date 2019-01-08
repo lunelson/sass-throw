@@ -1,24 +1,28 @@
-# sass-throw
+# Sass Throw
 
 [![](https://img.shields.io/travis/lunelson/sass-throw.svg?style=flat-square)](#travis)
 [![](https://img.shields.io/npm/v/@lunelson/sass-throw.svg?style=flat-square)](#releases)
 [![](https://img.shields.io/github/license/lunelson/sass-throw.svg?style=flat-square)](#license)
 <!-- [![](https://img.shields.io/npm/dt/@lunelson/sass-throw.svg?style=flat-square)](#download) -->
 
-Make `@error`, `@warn` and `@debug` directives testable in Sass.
+Functions for using Sass' `@error` `@warn` and `@debug` directives in a way that is capturable and testable.
 
-Use `error()`, `warn()` and `debug()` functions (or mixins) instead of the built-in `@error`, `@warn` and `@debug` directives, and when the global variable `$throw-catch` is set to `true`, their messages will be output in CSS rather than passed to Sass directives.
-
+## Installation
 ```sh
-# in your project
-npm install --save @lunelson/sass-throw
+# install in your project
+
+npm i @lunelson/sass-throw
 ```
+## Basic Usage
+
+The basic API consists of the following functions and mixins, which receive a string, and  will trigger their corresponding directive (e.g. `@warn`) with the given string when the `$throw-catch` global variable is `false`, but will return the string when `$throw-catch` is true.
+
 ```scss
-// in your sass file, assuming you have 'node_modules' in Sass' search path
+// Sass input file
+// NB: you need 'node_modules' in Sass' `importPaths` option
+
 @import '@lunelson/sass-throw/index';
-```
-```scss
-/* input: test.scss */
+
 $throw-catch: true;
 
 .test {
@@ -32,7 +36,8 @@ $throw-catch: true;
 @include throw-debug('this is a debug message via mixin');
 ```
 ```css
-/* output: test.css */
+/* CSS output file */
+
 .test {
   error: "this is an error message via function";
   warn: "this is a warn message via function";
