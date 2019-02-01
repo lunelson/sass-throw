@@ -3,7 +3,7 @@
 [![](https://img.shields.io/travis/lunelson/sass-throw.svg?style=flat-square)](#travis)
 [![](https://img.shields.io/npm/v/@lunelson/sass-throw.svg?style=flat-square)](#releases)
 [![](https://img.shields.io/github/license/lunelson/sass-throw.svg?style=flat-square)](#license)
-<!-- [![](https://img.shields.io/npm/dt/@lunelson/sass-throw.svg?style=flat-square)](#download) -->
+[![](https://img.shields.io/npm/dt/@lunelson/sass-throw.svg?style=flat-square)](#download)
 
 Functions for using Sass' `@error` `@warn` and `@debug` directives in a way that is capturable and testable.
 
