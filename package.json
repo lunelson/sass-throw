@@ -1,6 +1,6 @@
 {
   "name": "@lunelson/sass-throw",
-  "version": "2.0.0-rc.4",
+  "version": "2.0.0",
   "description": "Testable Sass error/warn/debug directives via proxy functions and mixins",
   "keywords": [
     "debug",
